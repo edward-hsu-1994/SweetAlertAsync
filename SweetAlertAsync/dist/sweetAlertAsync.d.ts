@@ -1,5 +1,5 @@
-declare var swal: any;
-declare function sweetAlertAsync(arguments: SweetAlertArguments): Promise<any>;
+declare var swal: any, sweetAlert: any;
+declare function sweetAlertAsync(titleOrArguments: (string | SweetAlertArguments), text?: string, type?: ("warning" | "error" | "success" | "info")): any;
 declare var swalAsync: typeof sweetAlertAsync;
 interface SweetAlertArguments {
     title: string;

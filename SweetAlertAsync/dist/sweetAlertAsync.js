@@ -6,11 +6,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-function sweetAlertAsync(arguments) {
+sweetAlert.close_ = sweetAlert.close;
+sweetAlert.close = function () {
+    sweetAlert.close_();
+    if (sweetAlert.onClose)
+        sweetAlert.onClose();
+};
+function sweetAlertAsync(titleOrArguments, text, type) {
     return __awaiter(this, void 0, void 0, function* () {
+        if (typeof (titleOrArguments) == "string") {
+            return yield sweetAlertAsync({
+                title: titleOrArguments,
+                text: text,
+                type: type
+            });
+        }
         return new Promise((res, rej) => {
+            if (titleOrArguments.showCancelButton) {
+                sweetAlert.onClose = function () {
+                    res();
+                    sweetAlert.onClose = null;
+                };
+                swal(titleOrArguments, (result) => {
+                    rej(result);
+                });
+            }
             try {
-                swal(arguments, (result) => {
+                swal(titleOrArguments, (result) => {
                     res(result);
                 });
             }
