@@ -12,7 +12,7 @@
 
 ### 使用
 ```typescript
-var result = await swal({
+var result = await swalAsync({
 	title: "Are you sure?",
 	text: "You will not be able to recover this imaginary file!",
 	type: "warning",
@@ -25,7 +25,7 @@ console.log(result);
 ```
 
 ```javascript
-swal({
+swalAsync({
 	title: "Are you sure?",
 	text: "You will not be able to recover this imaginary file!",
 	type: "warning",
